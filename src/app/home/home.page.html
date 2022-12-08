@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Lista de estudiantes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item-sliding *ngFor="let item of students; let i=index">
+          <ion-item (click)="getStudentById(item.id)">
+          <ion-label>Numero de control: {{item.controlnumber}} <br> Alumno: {{item.name}}</ion-label>
+          <ion-chip color="primary" outline="true" class="ion-float-right">
+            <ion-label>
+              {{item.career}}
+            </ion-label>
+          </ion-chip>
+        </ion-item>
+          <ion-item-options side="start" (ionSwipe)="removeStudent(item.id)">
+            <ion-item-option expandable color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          <ion-item-options side="end" (ionSwipe)="updateStudent(item.id)">
+            <ion-item-option expandable color="warning">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options> 
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-fab horizontal="end" [edge]="true">
+    <ion-fab-button (click)="newStudent()">
+      <ion-icon name = "add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
